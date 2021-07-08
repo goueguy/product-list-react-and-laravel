@@ -1,8 +1,14 @@
 
-import {Navbar,Nav,Form,FormControl, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Navbar,Nav,NavDropdown} from 'react-bootstrap';
+import {Link, useHistory} from 'react-router-dom';
 
 function Header() {
+    const user = JSON.parse(localStorage.getItem('user-info'));
+    const history = useHistory();
+    const logout = ()=>{
+        localStorage.clear();
+        history.push('./login');
+    }
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -21,10 +27,25 @@ function Header() {
                                 <Link to="/login" className="pr-4 text-white">LOGIN</Link>
                                 <Link to="/register" className="text-white">REGISTER</Link>
                             </>
-                        
                         }
                     </Nav>
-                
+                    {
+                        localStorage.getItem('user-info') ? 
+                        <>
+                            <Nav className="mr-5">
+                                <NavDropdown title={user && user.data.name}>
+                                    <NavDropdown.Item onClick={logout}>
+                                        Logout
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        Profile
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                        </>
+                        :null
+                    }
+                    
             </Navbar>
             
         </div>
