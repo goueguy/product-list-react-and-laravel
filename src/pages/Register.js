@@ -64,7 +64,7 @@ function Register() {
                     }
                 </Col>
                 <Col>
-                    <Button variant="outline-primary" onClick={signUp}>VALIDER</Button>{''}
+                    <Button variant="outline-success" onClick={signUp}>VALIDER</Button>{''}
                 </Col>
             </Row>
         </Container>
