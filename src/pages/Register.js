@@ -29,7 +29,7 @@ function Register() {
             body: JSON.stringify(item)
         })
         result = await result.json();
-        if(result.code==404){
+        if(result.code===400){
                 setErrors(result.error);
         }else{
             localStorage.setItem("user-info",JSON.stringify(result));

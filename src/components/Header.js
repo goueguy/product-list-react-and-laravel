@@ -4,6 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 function Header() {
     const user = JSON.parse(localStorage.getItem('user-info'));
+    console.log(user);
     const history = useHistory();
     const logout = ()=>{
         localStorage.clear();
@@ -33,7 +34,7 @@ function Header() {
                         localStorage.getItem('user-info') ? 
                         <>
                             <Nav className="mr-5">
-                                <NavDropdown title={user && user.data.name}>
+                                <NavDropdown title={user.data.name && user.data.name}>
                                     <NavDropdown.Item onClick={logout}>
                                         Logout
                                     </NavDropdown.Item>

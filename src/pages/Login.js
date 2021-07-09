@@ -29,10 +29,11 @@ const Login = ()=>{
             body: JSON.stringify(item)
         });
         result = await result.json();
-        if(result.code==404){
+        if(result.code===400){
             setErrors(result.message);
             setStatus(true);
         }else{
+            //console.log(result);
             localStorage.setItem("user-info",JSON.stringify(result));
             history.push('./add-product');
         }
@@ -47,7 +48,7 @@ const Login = ()=>{
                     (status) && 
                     <Col>
                         {
-                            (!error['email'] && !error['password']) && <Alert variant="danger">{error}</Alert>
+                            (!error["email"] && !error['password']) && <Alert variant="danger">{error}</Alert>
                         }
                     </Col>
                     
