@@ -9,7 +9,7 @@ const Protected = (props)=>{
         {
             history.push('./register');
         }
-    },[]);
+    });
     return(
         <div>
             <Cmp/>

@@ -4,7 +4,6 @@ import {Link, useHistory} from 'react-router-dom';
 
 function Header() {
     const user = JSON.parse(localStorage.getItem('user-info'));
-    console.log(user);
     const history = useHistory();
     const logout = ()=>{
         localStorage.clear();
@@ -20,8 +19,9 @@ function Header() {
                         {
                             localStorage.getItem('user-info') ? 
                             <>
+                                <Link to="/list-product" className="pr-4 text-white">LIST PRODUCT</Link>
                                 <Link to="/add-product" className="pr-4 text-white">ADD PRODUCT</Link>
-                                <Link to="/update" className="pr-4 text-white">UPDATE PRODUCT</Link>
+                                 <Link to="/rechercher" className="pr-4 text-white">SEARCH PRODUCT</Link>
                             </>
                             :
                             <>

@@ -12,10 +12,10 @@ const Login = ()=>{
     useEffect(()=>{
         if(localStorage.getItem("user-info"))
         {
-            history.push('./add-product');
+            history.push('./');
         }
         
-    },[]);
+    });
     const login = async ()=>{
         //console.warn("data",email,password);
         let item = {email,password};
@@ -35,7 +35,7 @@ const Login = ()=>{
         }else{
             //console.log(result);
             localStorage.setItem("user-info",JSON.stringify(result));
-            history.push('./add-product');
+            history.push('./');
         }
     }
     return(

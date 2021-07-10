@@ -1,10 +1,12 @@
 import Header from '../components/Header';
 import React,{useState,useRef} from 'react'
 import { Container,Row, Col, Button,Alert} from 'react-bootstrap'
+import { useHistory} from 'react-router-dom';
 import { BASE_URL } from '../constants';
 import swal from 'sweetalert';
 
 const AddProduct = ()=>{
+    const history = useHistory();
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
@@ -28,12 +30,21 @@ const AddProduct = ()=>{
         if(result.error){
             setError(result.error);
         }else{
-            swal("Success!", result.message, "success");
-            setDescription("");
-            fileInputRef.current.value="";
+             fileInputRef.current.value="";
             setName("");
             setPrice("");
             setError("");
+            setDescription("");
+            swal("Success!", result.message, "success");
+            swal({
+                title:"Bravo!", 
+                text:result.message, 
+                type:"success",
+                timer:2000
+                }).then(()=>{
+                   history.push('/list-product')
+                });
+           
         }
         
     }
@@ -52,7 +63,7 @@ const AddProduct = ()=>{
                 </Col>
                 
                 <Col md={12} className="form-group">
-                    <textarea type="text" name="description" className="form-control" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description"></textarea>
+                    <textarea type="text" name="description" rows={6} className="form-control" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description"></textarea>
                     {
                         (error["description"]) && (<Alert variant="danger" className="mt-2">{error["description"]}</Alert>)
                     }
